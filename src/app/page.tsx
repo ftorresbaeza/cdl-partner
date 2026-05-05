@@ -209,15 +209,15 @@ export default function Home() {
               className="mt-12 flex flex-wrap gap-8"
             >
               <div>
-                <div className="text-3xl font-bold text-white">500+</div>
-                <div className="text-sm text-slate-400">Clientes satisfechos</div>
+                <div className="text-2xl font-bold text-white">50+</div>
+                <div className="text-sm text-slate-400">Clientes</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-white">15+</div>
-                <div className="text-sm text-slate-400">Anos de experiencia</div>
+                <div className="text-2xl font-bold text-white">5+</div>
+                <div className="text-sm text-slate-400">Anos</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-white">100%</div>
+                <div className="text-2xl font-bold text-white">100%</div>
                 <div className="text-sm text-slate-400">Garantizado</div>
               </div>
             </motion.div>
@@ -328,21 +328,26 @@ export default function Home() {
 
       {/* Servicios Section */}
       <section id="servicios" className="py-24 bg-white relative overflow-hidden">
-        {/* Decorative floating elements */}
+        {/* Decorative floating elements - mas visibles */}
         <motion.div 
-          animate={{ y: [0, -15, 0], rotate: [0, 10, 0] }}
-          transition={{ duration: 8, repeat: Infinity }}
-          className="absolute -top-10 -left-10 w-32 h-32 bg-gradient-to-br from-cyan-100 to-teal-100 rounded-full opacity-50"
+          animate={{ y: [0, -20, 0], rotate: [0, 12, 0] }}
+          transition={{ duration: 7, repeat: Infinity }}
+          className="absolute -top-8 -left-8 w-36 h-36 bg-gradient-to-br from-cyan-400 to-teal-400 rounded-full opacity-70 shadow-lg"
         />
         <motion.div 
-          animate={{ y: [0, 20, 0], x: [0, 10, 0] }}
-          transition={{ duration: 10, repeat: Infinity }}
-          className="absolute top-1/3 -right-20 w-40 h-40 border border-cyan-200/30 rounded-full"
+          animate={{ y: [0, 25, 0], x: [0, 15, 0] }}
+          transition={{ duration: 9, repeat: Infinity }}
+          className="absolute top-1/3 -right-16 w-32 h-32 border-4 border-cyan-400/50 rounded-full"
         />
         <motion.div 
-          animate={{ rotate: [0, -15, 0] }}
-          transition={{ duration: 12, repeat: Infinity }}
-          className="absolute bottom-10 left-20 w-16 h-16 border-2 border-teal-100 rounded-2xl rotate-12"
+          animate={{ rotate: [0, -20, 0], y: [0, 15, 0] }}
+          transition={{ duration: 11, repeat: Infinity }}
+          className="absolute bottom-8 left-[15%] w-20 h-20 border-3 border-teal-400/50 rounded-2xl rotate-12"
+        />
+        <motion.div 
+          animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0.7, 0.5] }}
+          transition={{ duration: 6, repeat: Infinity }}
+          className="absolute top-10 right-[25%] w-12 h-12 bg-teal-400 rounded-lg opacity-50 rotate-45"
         />
         
         <div className="max-w-7xl mx-auto px-6 relative z-10">
@@ -388,7 +393,24 @@ export default function Home() {
       {/* Por que elegirnos */}
       <section className="py-24 bg-slate-50 relative overflow-hidden">
         <div className="absolute inset-0 gradient-mesh opacity-50" />
-        <div className="max-w-7xl mx-auto px-6 relative">
+        {/* Floating decorations - mas visibles en fondo claro */}
+        <motion.div 
+          animate={{ y: [0, 25, 0], x: [0, -15, 0], rotate: [0, 15, 0] }}
+          transition={{ duration: 8, repeat: Infinity }}
+          className="absolute top-16 left-[10%] w-28 h-28 bg-gradient-to-br from-cyan-400 to-teal-400 rounded-2xl opacity-70 rotate-12 shadow-lg"
+        />
+        <motion.div 
+          animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
+          transition={{ duration: 5, repeat: Infinity }}
+          className="absolute top-40 right-[15%] w-16 h-16 bg-teal-400 rounded-full opacity-60 shadow-lg"
+        />
+        <motion.div 
+          animate={{ rotate: [0, -20, 0], y: [0, 20, 0] }}
+          transition={{ duration: 10, repeat: Infinity }}
+          className="absolute bottom-20 left-[20%] w-20 h-20 border-4 border-cyan-300/60 rounded-2xl rotate-45"
+        />
+        
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -428,8 +450,30 @@ export default function Home() {
       </section>
 
       {/* Sobre nosotros */}
-      <section id="nosotros" className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
+      <section id="nosotros" className="py-24 bg-white relative overflow-hidden">
+        {/* Floating decorations */}
+        <motion.div 
+          animate={{ y: [0, -20, 0], rotate: [0, 10, 0] }}
+          transition={{ duration: 8, repeat: Infinity }}
+          className="absolute top-20 right-[10%] w-28 h-28 bg-gradient-to-br from-cyan-400 to-teal-400 rounded-2xl opacity-60 shadow-lg rotate-12"
+        />
+        <motion.div 
+          animate={{ scale: [1, 1.15, 1], opacity: [0.4, 0.7, 0.4] }}
+          transition={{ duration: 6, repeat: Infinity }}
+          className="absolute top-1/2 left-[5%] w-20 h-20 bg-teal-400 rounded-full opacity-50"
+        />
+        <motion.div 
+          animate={{ rotate: [0, -25, 0], y: [0, 25, 0] }}
+          transition={{ duration: 10, repeat: Infinity }}
+          className="absolute bottom-16 right-[20%] w-24 h-24 border-4 border-cyan-300/50 rounded-2xl rotate-45"
+        />
+        <motion.div 
+          animate={{ y: [0, 15, 0], x: [0, -10, 0] }}
+          transition={{ duration: 7, repeat: Infinity }}
+          className="absolute bottom-10 left-[30%] w-14 h-14 bg-cyan-300/40 rounded-lg rotate-12"
+        />
+        
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -481,13 +525,34 @@ export default function Home() {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="grid grid-cols-2 gap-4">
+<div className="grid grid-cols-2 gap-4">
                 <motion.div 
                   whileHover={{ scale: 1.02 }}
                   className="bg-gradient-to-br from-cyan-500 to-teal-600 rounded-2xl p-6 text-white"
                 >
-                  <div className="text-3xl font-bold mb-1">100%</div>
-                  <div className="text-cyan-100 text-sm">Garantizado</div>
+                  <div className="text-2xl font-bold mb-1">100%</div>
+                  <div className="text-cyan-100 text-xs">Garantizado</div>
+                </motion.div>
+                <motion.div 
+                  whileHover={{ scale: 1.02 }}
+                  className="bg-slate-100 rounded-2xl p-6"
+                >
+                  <div className="text-2xl font-bold text-slate-800 mb-1">8AM-8PM</div>
+                  <div className="text-slate-600 text-xs">Horario</div>
+                </motion.div>
+                <motion.div 
+                  whileHover={{ scale: 1.02 }}
+                  className="bg-slate-100 rounded-2xl p-6"
+                >
+                  <div className="text-2xl font-bold text-slate-800 mb-1">50+</div>
+                  <div className="text-slate-600 text-xs">Clientes</div>
+                </motion.div>
+                <motion.div 
+                  whileHover={{ scale: 1.02 }}
+                  className="bg-gradient-to-br from-teal-500 to-cyan-600 rounded-2xl p-6 text-white"
+                >
+                  <div className="text-2xl font-bold mb-1">5+</div>
+                  <div className="text-teal-100 text-xs">Años</div>
                 </motion.div>
                 <motion.div 
                   whileHover={{ scale: 1.02 }}
