@@ -59,7 +59,7 @@ const valores = [
   { icon: Shield, titulo: "Confianza", descripcion: "Profesionalismo garantizado en cada servicio" },
   { icon: Clock, titulo: "Puntualidad", descripcion: "Cumplimiento de horarios y plazos acordados" },
   { icon: Leaf, titulo: "Sostenibilidad", descripcion: "Practicas responsables con el medio ambiente" },
-  { icon: Users, titulo: "Atencion Personalizada", descripcion: "Soluciones adaptadas a cada cliente" },
+  { icon: Users, titulo: "Atención Personalizada", descripcion: "Soluciones adaptadas a cada cliente" },
 ];
 
 export default function Home() {
@@ -535,7 +535,7 @@ export default function Home() {
                   "Gestion integral de limpieza",
                   "Equipos profesionales especializados",
                   "Enfoque de eficiencia y sostenibilidad",
-                  "Atencion personalizada a cada cliente"
+                  "Atención personalizada a cada cliente"
                 ].map((item) => (
                   <motion.div 
                     key={item}
@@ -764,7 +764,7 @@ export default function Home() {
               </div>
 
               <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-8 border border-white/20">
-                <h3 className="text-xl font-bold text-white mb-4">Horarios de Atencion</h3>
+                <h3 className="text-xl font-bold text-white mb-4">Horarios de Atención</h3>
                 <div className="text-cyan-100 space-y-2">
                   <p>Lunes a Viernes: 8:00 - 20:00</p>
                   <p>Sabados: 9:00 - 18:00</p>
