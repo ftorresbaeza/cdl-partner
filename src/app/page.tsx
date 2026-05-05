@@ -584,7 +584,7 @@ export default function Home() {
                   className="bg-gradient-to-br from-teal-500 to-cyan-600 rounded-2xl p-6 text-white"
                 >
                   <div className="text-2xl font-bold mb-1">5</div>
-                  <div className="text-teal-100 text-xs">Años experiencia</div>
+                  <div className="text-teal-100 text-xs">Años en el mercado</div>
                 </motion.div>
               </div>
             </motion.div>
