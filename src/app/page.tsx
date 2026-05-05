@@ -64,10 +64,42 @@ const valores = [
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
+  const [formData, setFormData] = useState({
+    nombre: "",
+    telefono: "",
+    email: "",
+    servicio: "",
+    mensaje: ""
+  });
+  const [enviando, setEnviando] = useState(false);
+  const [enviado, setEnviado] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setEnviando(true);
+    
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+      });
+      
+      if (res.ok) {
+        setEnviado(true);
+        setFormData({ nombre: "", telefono: "", email: "", servicio: "", mensaje: "" });
+        setTimeout(() => setEnviado(false), 3000);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+    
+    setEnviando(false);
+  };
 
   if (!mounted) {
     return (
@@ -213,8 +245,8 @@ export default function Home() {
                 <div className="text-sm text-slate-400">Clientes</div>
               </div>
               <div>
-                <div className="text-2xl font-bold text-white">5+</div>
-                <div className="text-sm text-slate-400">Anos</div>
+                <div className="text-2xl font-bold text-white">5</div>
+                <div className="text-sm text-slate-400">Años</div>
               </div>
               <div>
                 <div className="text-2xl font-bold text-white">100%</div>
@@ -537,8 +569,8 @@ export default function Home() {
                   whileHover={{ scale: 1.02 }}
                   className="bg-slate-100 rounded-2xl p-6"
                 >
-                  <div className="text-2xl font-bold text-slate-800 mb-1">8AM-8PM</div>
-                  <div className="text-slate-600 text-xs">Horario</div>
+                  <div className="text-2xl font-bold text-slate-800 mb-1">5+</div>
+                  <div className="text-slate-600 text-xs">Años</div>
                 </motion.div>
                 <motion.div 
                   whileHover={{ scale: 1.02 }}
@@ -551,29 +583,8 @@ export default function Home() {
                   whileHover={{ scale: 1.02 }}
                   className="bg-gradient-to-br from-teal-500 to-cyan-600 rounded-2xl p-6 text-white"
                 >
-                  <div className="text-2xl font-bold mb-1">5+</div>
-                  <div className="text-teal-100 text-xs">Años</div>
-                </motion.div>
-                <motion.div 
-                  whileHover={{ scale: 1.02 }}
-                  className="bg-slate-100 rounded-2xl p-6"
-                >
-                  <div className="text-3xl font-bold text-slate-800 mb-1">24/7</div>
-                  <div className="text-slate-600 text-sm">Disponible</div>
-                </motion.div>
-                <motion.div 
-                  whileHover={{ scale: 1.02 }}
-                  className="bg-slate-100 rounded-2xl p-6"
-                >
-                  <div className="text-3xl font-bold text-slate-800 mb-1">100+</div>
-                  <div className="text-slate-600 text-sm">Empresas</div>
-                </motion.div>
-                <motion.div 
-                  whileHover={{ scale: 1.02 }}
-                  className="bg-gradient-to-br from-teal-500 to-cyan-600 rounded-2xl p-6 text-white"
-                >
-                  <div className="text-3xl font-bold mb-1">15+</div>
-                  <div className="text-teal-100 text-sm">Anos</div>
+                  <div className="text-2xl font-bold mb-1">5</div>
+                  <div className="text-teal-100 text-xs">Años experiencia</div>
                 </motion.div>
               </div>
             </motion.div>
@@ -632,13 +643,21 @@ export default function Home() {
               viewport={{ once: true }}
               className="bg-white rounded-3xl p-8 shadow-2xl"
             >
-              <form className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                {enviado && (
+                  <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-xl">
+                    Mensaje enviado correctamente. Te contactaremos pronto.
+                  </div>
+                )}
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-slate-700 mb-2">Nombre</label>
                     <input 
                       type="text" 
                       placeholder="Tu nombre"
+                      value={formData.nombre}
+                      onChange={(e) => setFormData({...formData, nombre: e.target.value})}
+                      required
                       className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200 outline-none transition-all"
                     />
                   </div>
@@ -647,6 +666,9 @@ export default function Home() {
                     <input 
                       type="tel" 
                       placeholder="+56 9 XXXX XXXX"
+                      value={formData.telefono}
+                      onChange={(e) => setFormData({...formData, telefono: e.target.value})}
+                      required
                       className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200 outline-none transition-all"
                     />
                   </div>
@@ -656,13 +678,20 @@ export default function Home() {
                   <input 
                     type="email" 
                     placeholder="tu@email.com"
+                    value={formData.email}
+                    onChange={(e) => setFormData({...formData, email: e.target.value})}
+                    required
                     className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200 outline-none transition-all"
                   />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-slate-700 mb-2">Tipo de Servicio</label>
-                  <select className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200 outline-none transition-all">
-                    <option>Selecciona un servicio</option>
+                  <select 
+                    value={formData.servicio}
+                    onChange={(e) => setFormData({...formData, servicio: e.target.value})}
+                    className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200 outline-none transition-all"
+                  >
+                    <option value="">Selecciona un servicio</option>
                     <option>Limpieza Corporativa</option>
                     <option>Limpieza de Eventos</option>
                     <option>Mantenimiento General</option>
@@ -675,6 +704,9 @@ export default function Home() {
                   <textarea 
                     rows={4}
                     placeholder="Cuentanos sobre tu proyecto o necesidades..."
+                    value={formData.mensaje}
+                    onChange={(e) => setFormData({...formData, mensaje: e.target.value})}
+                    required
                     className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200 outline-none transition-all resize-none"
                   />
                 </div>
@@ -682,10 +714,11 @@ export default function Home() {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   type="submit"
-                  className="w-full bg-gradient-to-r from-cyan-500 to-teal-600 text-white py-4 rounded-xl font-semibold flex items-center justify-center gap-2 hover:shadow-xl transition-all"
+                  disabled={enviando}
+                  className="w-full bg-gradient-to-r from-cyan-500 to-teal-600 text-white py-4 rounded-xl font-semibold flex items-center justify-center gap-2 hover:shadow-xl transition-all disabled:opacity-50"
                 >
                   <Send className="w-5 h-5" />
-                  Enviar Solicitud
+                  {enviando ? "Enviando..." : "Enviar Solicitud"}
                 </motion.button>
               </form>
             </motion.div>
@@ -706,7 +739,7 @@ export default function Home() {
                     </div>
                     <div>
                       <div className="text-cyan-200 text-sm">Telefono</div>
-                      <div className="text-white font-semibold">+56 9 0000 0000</div>
+                      <div className="text-white font-semibold">+56 9 5005 4833</div>
                     </div>
                   </div>
                   <div className="flex items-center gap-4">
@@ -715,7 +748,7 @@ export default function Home() {
                     </div>
                     <div>
                       <div className="text-cyan-200 text-sm">Email</div>
-                      <div className="text-white font-semibold">contacto@cdlpartner.cl</div>
+                      <div className="text-white font-semibold">daniela@cdlpartner.cl</div>
                     </div>
                   </div>
                   <div className="flex items-center gap-4">
@@ -745,7 +778,7 @@ export default function Home() {
 
       {/* WhatsApp Floating Button */}
       <motion.a
-        href="https://wa.me/56900000000"
+        href="https://wa.me/56950054833"
         target="_blank"
         rel="noopener noreferrer"
         initial={{ scale: 0 }}
@@ -801,11 +834,11 @@ export default function Home() {
               <ul className="space-y-2 text-slate-400">
                 <li className="flex items-center gap-2">
                   <Phone className="w-4 h-4" />
-                  <span>+56 9 0000 0000</span>
+                  <span>+56 9 5005 4833</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <Mail className="w-4 h-4" />
-                  <span>contacto@cdlpartner.cl</span>
+                  <span>daniela@cdlpartner.cl</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <MapPin className="w-4 h-4" />
