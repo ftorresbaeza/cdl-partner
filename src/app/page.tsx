@@ -569,8 +569,8 @@ export default function Home() {
                   whileHover={{ scale: 1.02 }}
                   className="bg-slate-100 rounded-2xl p-6"
                 >
-                  <div className="text-2xl font-bold text-slate-800 mb-1">5+</div>
-                  <div className="text-slate-600 text-xs">Años</div>
+                  <div className="text-2xl font-bold text-slate-800 mb-1">10+</div>
+                  <div className="text-slate-600 text-xs">Proyectos</div>
                 </motion.div>
                 <motion.div 
                   whileHover={{ scale: 1.02 }}
